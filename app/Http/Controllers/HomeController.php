@@ -30,7 +30,11 @@ class HomeController extends Controller
         // feed
         $user = User::find(auth()->user()->id);
         $tweets = '';
-        if(User::find(auth()->user()->id)->profiles()->get()->isEmpty()){
+        $profile = null;
+        if(!auth()->check()){
+            $tweets = DB::table('tweets')->leftJoin('profiles', 'tweets.profile_id', '=', 'profiles.id')->select('tweets.*', 'profiles.name', 'profiles.handle', 'profiles.profile_pic')->orderBy('created_at', 'desc')->get();   
+        }
+        else if(User::find(auth()->user()->id)->profiles()->get()->isEmpty()){
             // first sign up
             $profile = new Profile;
             $profile->name = auth()->user()->name;
@@ -43,13 +47,14 @@ class HomeController extends Controller
             $user->save();
         }
         else{
+            $profile = Profile::find(auth()->user()->current_profile);
             $tweets = DB::table('tweets')->leftJoin('profiles', 'tweets.profile_id', '=', 'profiles.id')->select('tweets.*', 'profiles.name', 'profiles.handle', 'profiles.profile_pic')->orderBy('created_at', 'desc')->get();
             // if($tweets->isEmpty()){
             //     $tweets = [];
             // }
         }
         // dd($tweets);
-        return view('home', compact('tweets'));
+        return view('home', compact('tweets', 'profile'));
     }
 
     // public function follow()

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid px-0">
     <nav class="nav flex-column position-relative">
         {{-- cover and icon --}}
         <a class="nav-link" id="cover-profile">

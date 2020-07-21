@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
 use App\Profile;
+use App\Retweet;
 use App\Tweet;
 use App\User;
 use Illuminate\Http\Request;
@@ -50,6 +52,30 @@ class TweetController extends Controller
         $tweet->reply_count = 0;
         $tweet->profile_id = $profile->id;
         $tweet->save();
+
+        return redirect()->route('home');
+    }
+
+    public function like(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $profile = Profile::find($user->current_profile);
+        $like = new Like;
+        $like->profile_id = $profile->id;
+        $like->liked_tweet = $request->input('liked_tweet');
+        $like->save();
+
+        return redirect()->route('home');
+    }
+    
+    public function retweet(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $profile = Profile::find($user->current_profile);
+        $retweet = new Retweet;
+        $retweet->profile_id = $profile->id;
+        $retweet->retweeted_tweet = $request->input('retweeted_tweet');
+        $retweet->save();
 
         return redirect()->route('home');
     }

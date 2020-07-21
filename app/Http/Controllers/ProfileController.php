@@ -39,8 +39,17 @@ class ProfileController extends Controller
             }
             $followers = Profile::find($is_user->id)->followers()->get();
             $followings = Profile::find($is_user->id)->followings()->get();
-            $tweets = DB::table('tweets')->where('profile_id', $id)->leftJoin('profiles', 'tweets.profile_id', 'profiles.id')->select('tweets.*', 'profiles.name', 'profiles.handle', 'profiles.profile_pic')->orderBy('created_at', 'desc')->get();
+            $tweets = DB::table('tweets')->where('profile_id', $id)
+                ->leftJoin('profiles', 'tweets.profile_id', 'profiles.id')
+                ->select('tweets.*', 'profiles.name', 'profiles.handle', 'profiles.profile_pic')
+                ->orderBy('created_at', 'desc')->get();
             // dd(storage_path('app/pfp/'.$is_user->profile_pic));
+            $retweets = Profile::find($id)->retweets()
+                ->leftJoin('tweets', 'retweets.retweeted_tweet', 'tweets.id')
+                ->leftJoin('profiles', 'tweets.profile_id', 'profiles.id')
+                ->select('*', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id')->get();
+            $tweets = $tweets->merge($retweets)->sortByDesc('created_at');
+            // dd($tweets);
             return view('profile', compact('user', 'id', 'is_own_profile', 'can_follow', 'followings', 'followers', 'is_user', 'tweets'));
         }
         return 'invalid user';

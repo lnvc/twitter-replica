@@ -21,10 +21,10 @@
 </head>
 <body class="bg-white">
     <div id="app" class="container-fluid">
-        <div class="row justify-content-md-center bg-white">
-            <nav id="navbar" class="col col-md-2 bg-white row">
-                <div class="pl-md-5 position-fixed">
-                    <ul class="nav flex-column">
+        <div class="row justify-content-md-center bg-white" style="height: 100%">
+            <nav id="navbar" class="col col-md-2 bg-white row" style="height: 100%">
+                <div class="position-fixed" style="height: 100%;">
+                    <ul class="nav flex-column position-relative" style="height: 100%">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -63,10 +63,8 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">More</a>
                             </li>
-                            <li class="nav-item"><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <li class="nav-item dropdown">
+                            
+                            <li class="nav-item dropdown position-absolute fixed-bottom text-right">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('profile', ['user' => Auth::user()->name]) }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->handle }} <span class="caret"></span>
                                 </a>
@@ -87,7 +85,7 @@
                     </ul>
                 </div>
             </nav>
-            <main class="pt-4 col col-md-4">
+            <main class="pt-4 px-0 col col-md-4 border-left border-right">
                 @yield('content')
             </main>
             <div class="col col-md-2">

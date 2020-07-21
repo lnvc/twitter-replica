@@ -22,6 +22,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'TweetController@store');
 Route::get('/follow/{id}', 'FollowingController@follow');
 Route::get('/unfollow/{id}', 'FollowingController@unfollow');
+Route::post('/like', 'TweetController@like');
+Route::post('/retweet', 'TweetController@retweet');
 Route::get('/settings/profile', 'ProfileController@edit')->middleware('auth');
 Route::put('/updateprofile', 'ProfileController@update');
 Route::get('/{user}', 'ProfileController@index')->name('profile');
