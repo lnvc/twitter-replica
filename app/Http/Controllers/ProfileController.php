@@ -49,8 +49,9 @@ class ProfileController extends Controller
                 ->leftJoin('profiles', 'tweets.profile_id', 'profiles.id')
                 ->select('*', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id')->get();
             $tweets = $tweets->merge($retweets)->sortByDesc('created_at');
+            $profile = Profile::find($is_user->id);
             // dd($tweets);
-            return view('profile', compact('user', 'id', 'is_own_profile', 'can_follow', 'followings', 'followers', 'is_user', 'tweets'));
+            return view('profile', compact('user', 'id', 'is_own_profile', 'can_follow', 'followings', 'followers', 'is_user', 'tweets', 'profile'));
         }
         return 'invalid user';
     }

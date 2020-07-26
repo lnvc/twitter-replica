@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="text-right px-2 py-2">
-                <button type="submit" class="btn btn-primary rounded">Tweet</button>
+                <button type="submit" class="btn btn-primary rounded" :disabled="disabled == 1">Tweet</button>
             </div>
         </form>
     </div>
@@ -20,21 +20,24 @@
 <script>
     export default {
         name: "Tweet",
-        props: ["profile"],
+        props: ["profile", "showModal"],
         methods: {
             countChars() {
-                if(this.tweet.length <= 250){
+                if(this.tweet.length <= 250 && this.tweet.length > 0){
                     console.log(this.tweet.length);
+                    this.disabled = 0;
                 }
                 else{
-
+                    this.disabled = 1;
                 }
             }
         },
         data() {
             return {
-                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                disabled: 1,
             }
         }
     }
 </script>
+

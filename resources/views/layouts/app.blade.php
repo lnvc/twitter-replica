@@ -63,7 +63,23 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link">More</a>
                             </li>
-                            
+                            {{-- <li class="nav-item">
+                                <b-button v-b-modal.modal class="btn btn-primary">Tweet</b-button>
+                                <b-modal id="modal">
+                                    hi
+                                </b-modal>
+                            </li> --}}
+                            <li class="make-tweet">
+                                <b-button v-b-modal.modal-1 variant="primary">Tweet</b-button>
+
+                                <b-modal id="modal-1">
+                                    <Tweet :profile={{$profile}} />
+                                </b-modal>
+                                {{-- <TweetButton :profile="{{$profile}}"/> --}}
+                                {{-- <button @click="isOpen = 1" class="btn btn-primary">Tweet</button>
+                                <Tweet :profile={{$profile}} :showModal=FALSE /> --}}
+                            </li>
+
                             <li class="nav-item dropdown position-absolute fixed-bottom text-right">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('profile', ['user' => Auth::user()->name]) }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->handle }} <span class="caret"></span>

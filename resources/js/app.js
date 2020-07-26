@@ -7,6 +7,16 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+
+// Install BootstrapVue
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,6 +30,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('tweet', require('./components/Tweet.vue').default);
+Vue.component('tweetbutton', require('./components/TweetButton.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,5 +39,5 @@ Vue.component('tweet', require('./components/Tweet.vue').default);
  */
 
 const app = new Vue({
-    el: '.make-tweet',
+    el: '#app',
 });

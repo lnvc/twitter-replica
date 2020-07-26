@@ -29,6 +29,14 @@ text-align: left;
 background-color: #f8fafc;
 }
 
+img {
+    object-fit: cover;
+}
+
+.tweet-container:hover {
+    background-color: #f2f4f4;
+}
+
 #thumbnail {
 max-width: 30px;
 height: auto;
