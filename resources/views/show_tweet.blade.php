@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    following
-</div>
+    {{ $tweet_id }}
 @endsection

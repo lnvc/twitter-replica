@@ -1,4 +1,4 @@
-<div id="{{ $tweet->id . $tweet->profile_id }}" class="container-fluid border-bottom py-2 tweet-container" style="min-width: 100%;">
+<div onclick="location.href='{{ '/' . $tweet->handle . '/status' .'/' . $tweet->id }}';" id="{{ $tweet->id . $tweet->profile_id }}" class="container-fluid border-bottom py-2 tweet-container" style="min-width: 100%; cursor: pointer;">
     @if (isset($tweet->retweeted_tweet))
         <div class="row">
             <div class="col col-sm-1 text-right pr-0">

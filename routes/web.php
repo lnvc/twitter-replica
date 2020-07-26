@@ -27,4 +27,6 @@ Route::post('/retweet', 'TweetController@retweet');
 Route::get('/settings/profile', 'ProfileController@edit')->middleware('auth');
 Route::put('/updateprofile', 'ProfileController@update');
 Route::get('/{user}', 'ProfileController@index')->name('profile');
-// Route::get('/{user}/following', 'HomeController@follow');
+Route::get('/{user}/status/{tweet_id}', 'TweetController@show');
+
+Route::get('/{user}/following', 'ProfileController@displayfollowing');

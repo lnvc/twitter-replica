@@ -86,9 +86,10 @@ class TweetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($user, $tweet_id)
     {
-        //
+        $profile = Profile::find(auth()->user()->current_profile);
+        return view('show_tweet', compact('profile', 'user', 'tweet_id'));
     }
 
     /**

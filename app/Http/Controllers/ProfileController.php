@@ -47,9 +47,9 @@ class ProfileController extends Controller
             $retweets = Profile::find($id)->retweets()
                 ->leftJoin('tweets', 'retweets.retweeted_tweet', 'tweets.id')
                 ->leftJoin('profiles', 'tweets.profile_id', 'profiles.id')
-                ->select('*', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id')->get();
+                ->select('*', 'tweets.id', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id')->get();
             $tweets = $tweets->merge($retweets)->sortByDesc('created_at');
-            $profile = Profile::find($is_user->id);
+            $profile = Profile::find(auth()->user()->current_profile);
             // dd($tweets);
             return view('profile', compact('user', 'id', 'is_own_profile', 'can_follow', 'followings', 'followers', 'is_user', 'tweets', 'profile'));
         }
@@ -98,5 +98,11 @@ class ProfileController extends Controller
         $profile->save();
 
         return redirect(url(auth()->user()->handle));
+    }
+
+    public function displayfollowing($user)
+    {
+        $profile = Profile::find(auth()->user()->current_profile);
+        return view('following', compact('profile'));
     }
 }
