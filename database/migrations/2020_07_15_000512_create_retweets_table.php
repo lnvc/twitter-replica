@@ -21,6 +21,7 @@ class CreateRetweetsTable extends Migration
 
         Schema::table('retweets', function (Blueprint $table) {
             $table->unsignedBigInteger('profile_id')->references('id')->on('profiles');
+            // $table->unsignedBigInteger('retweeted_tweet')->references('id')->on('tweets');
         });
     }
 

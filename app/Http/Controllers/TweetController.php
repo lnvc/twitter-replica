@@ -72,10 +72,12 @@ class TweetController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $profile = Profile::find($user->current_profile);
+
         $retweet = new Retweet;
         $retweet->profile_id = $profile->id;
         $retweet->retweeted_tweet = $request->input('retweeted_tweet');
         $retweet->save();
+        $profile->retweets()->save($retweet);
 
         return redirect()->route('home');
     }

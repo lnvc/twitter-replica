@@ -21,6 +21,7 @@ class CreateLikesTable extends Migration
 
         Schema::table('likes', function (Blueprint $table) {
             $table->unsignedBigInteger('profile_id')->references('id')->on('profiles');
+            // $table->unsignedBigInteger('liked_tweet');
         });
     }
 

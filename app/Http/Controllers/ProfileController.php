@@ -18,14 +18,14 @@ class ProfileController extends Controller
         if(is_object($is_user)){
             if(Auth::check()){
                 // user's profile
-                $id = auth()->user()->id;
+                $id = auth()->user()->current_profile;
                 $is_own_profile = TRUE;
                 $can_follow = FALSE;
                 if($is_user->id != $id){
                     // visiting another profile
                     $is_own_profile = FALSE;
                     $can_follow = TRUE;
-                    if(is_object(Profile::find($id)->followings()->where('following_id', $is_user->id)->first())){
+                    if(!Profile::find($id)->followings()->get()->isEmpty() && is_object(Profile::find($id)->followings()->where('following_id', $is_user->id)->first())){
                         $can_follow = FALSE;
                     }
                     $id = $is_user->id;

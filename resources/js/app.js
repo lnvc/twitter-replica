@@ -30,8 +30,7 @@ Vue.use(IconsPlugin)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('tweet', require('./components/Tweet.vue').default);
-Vue.component('tweetbutton', require('./components/TweetButton.vue').default);
-
+Vue.component('editprofile', require('./components/EditProfile.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -7,13 +7,13 @@
             <div class="col col-sm-auto pr-0">
                 @if ($tweet->profile_id === auth()->user()->current_profile)
                     {{-- <img src="images/retweet.png" style="height: 10px; width: 10px;" alt=""> --}}
-                <a href="{{ '/' . App\Profile::find($tweet->profile_id)->handle }}" class="text-secondary">
+                <a href="{{ '/' . $tweet->rter_handle }}" class="text-secondary">
                         <span>You Retweeted</span>
                     </a>
                 @else
                     {{-- <img src="images/retweet.png" style="height: 10px; width: 10px;" alt=""> --}}
-                    <a href="{{ '/' . App\Profile::find($tweet->profile_id)->handle }}" class="text-secondary">
-                         <span>{{ $tweet->name }} Retweeted</span>
+                    <a href="{{ '/' . $tweet->rter_handle }}" class="text-secondary">
+                         <span>{{ $tweet->rter_handle }} Retweeted</span>
                     </a>
                 @endif
             </div>
@@ -26,7 +26,7 @@
             </a>
         </div>
         
-        <div class="col col-md-auto px-2" style="width: 80%">
+        <div class="col col-md-auto px-2" style="width: 85%">
             <span class="row">
                 <div class="col col-md-auto px-2">
                     <a href="{{ '/' . $tweet->handle }}">
@@ -34,6 +34,9 @@
                         <span class="text-secondary">{{ '@'.$tweet->handle }}</span>
                     </a>
                     <span class="text-secondary">{{' · ' . $tweet->created_at}}</span>
+                </div>
+                <div class="col text-right">
+                    <input type="image" src="{{ asset('images/dropdown.png') }}" alt="" style="height: 15px; width: 15px;">
                 </div>
             </span>
             <div class="row pl-2" style="width: 100%">
