@@ -5,17 +5,15 @@
                 <img src="images/retweet.png" style="height: 10px; width: 10px;" alt="">
             </div>
             <div class="col col-sm-auto pr-0">
-                @if ($tweet->profile_id === auth()->user()->current_profile)
-                    {{-- <img src="images/retweet.png" style="height: 10px; width: 10px;" alt=""> --}}
-                <a href="{{ '/' . $tweet->rter_handle }}" class="text-secondary">
+                @guest
+                    <a href="{{ '/' . $tweet->rter_handle }}" class="text-secondary">
+                        <span>{{ $tweet->rter_handle }} Retweeted</span>
+                    </a>
+                @else 
+                    <a href="{{ '/' . $tweet->rter_handle }}" class="text-secondary">
                         <span>You Retweeted</span>
                     </a>
-                @else
-                    {{-- <img src="images/retweet.png" style="height: 10px; width: 10px;" alt=""> --}}
-                    <a href="{{ '/' . $tweet->rter_handle }}" class="text-secondary">
-                         <span>{{ $tweet->rter_handle }} Retweeted</span>
-                    </a>
-                @endif
+                @endguest
             </div>
         </div>
     @endif

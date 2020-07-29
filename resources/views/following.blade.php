@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
-    following
+    @foreach ($followings as $following)
+        {{ $following->handle }}
+    @endforeach
 </div>
 @endsection

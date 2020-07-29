@@ -3,7 +3,7 @@
         <form method="POST" enctype="multipart/form-data" action="/updateprofile">
             <input type="hidden" name="_token" :value="csrf">
             <input type="hidden" name="_method" value="PUT">
-
+            
             <nav class="nav flex-column">
                 <a class="nav-link" id="cover-profile">
                     <div class="wrapper" id="cover_up">

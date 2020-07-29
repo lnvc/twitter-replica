@@ -18,7 +18,7 @@
             @else
                 <b-button v-b-modal.modal-2 variant="primary">Edit profile</b-button>
                 <b-modal id="modal-2" title="Edit profile">
-                    <EditProfile :profile="{{ $profile }}" />
+                    <EditProfile :profile="{{ $profile }}"></EditProfile>
                 </b-modal>
                 {{-- <a href="/settings/profile" class="btn btn-primary" >Edit profile</a> --}}
             @endif
@@ -52,11 +52,12 @@
             </div>
         </div>
         <div class="row py-1">
+            {{-- <link-following :is_user="{{ $is_user }}" :followings="{{ $followings }}"></link-following> --}}
             <div class="col col-sm-auto">
                 <a href="{{ '/' . $is_user->handle . "/following" }}"><b style="color: black;">{{ sizeof($followings) }}</b> <span style="color: gray;"> Following </span></a>
             </div>
             <div class="col">
-                <a href="#"><b style="color: black;">{{ sizeof($followers) }}</b> <span style="color: gray;"> Followers </span></a>
+                <a href="{{ '/' . $is_user->handle . "/followers" }}"><b style="color: black;">{{ sizeof($followers) }}</b> <span style="color: gray;"> Followers </span></a>
             </div>
         </div>
         <div class="row border-bottom py-3">
@@ -78,5 +79,8 @@
     <div>
         @each('partials.tweet', $tweets, 'tweet')
     </div>
+    {{-- <div>
+        <Follow></Follow>
+    </div> --}}
 </div>
 @endsection

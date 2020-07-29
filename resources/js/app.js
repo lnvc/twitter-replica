@@ -11,12 +11,15 @@ import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Router from 'vue-router'
 
 
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+
+Vue.use(Router)
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,12 +34,31 @@ Vue.use(IconsPlugin)
 
 Vue.component('tweet', require('./components/Tweet.vue').default);
 Vue.component('editprofile', require('./components/EditProfile.vue').default);
+Vue.component('follow', require('./components/Follow.vue').default);
+Vue.component('tab-following', require('./components/Followings.vue').default);
+Vue.component('tab-followers', require('./components/Followers.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+// Vue.component("link-followers", {
+    
+// });
+
+// import Follow from './components/Follow.vue'
+
+// const router = new Router({
+//     routes: [
+//         {
+//             path: '/:user/followers',
+//             name: 'follow',
+//             component: Follow
+//         },
+//     ]
+// });
+
 const app = new Vue({
-    el: '#app',
+    el: '#app'
 });

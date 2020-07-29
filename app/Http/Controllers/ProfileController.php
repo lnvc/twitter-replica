@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use stdClass;
 
 class ProfileController extends Controller
 {
@@ -49,9 +50,12 @@ class ProfileController extends Controller
                 ->leftJoin('profiles', 'tweets.profile_id', 'profiles.id')
                 ->select('*', 'tweets.id', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id')->get();
             $tweets = $tweets->merge($retweets)->sortByDesc('created_at');
-            $profile = Profile::find(auth()->user()->current_profile);
+            // $profile = null;
+            // if(auth()->check()){
+            //     $profile = Profile::find(auth()->user()->current_profile);
+            // }
             // dd($tweets);
-            return view('profile', compact('user', 'id', 'is_own_profile', 'can_follow', 'followings', 'followers', 'is_user', 'tweets', 'profile'));
+            return view('profile', compact('user', 'id', 'is_own_profile', 'can_follow', 'followings', 'followers', 'is_user', 'tweets'));
         }
         return 'invalid user';
     }
@@ -100,9 +104,22 @@ class ProfileController extends Controller
         return redirect(url(auth()->user()->handle));
     }
 
-    public function displayfollowing($user)
+    public function displayfollow($user)
     {
-        $profile = Profile::find(auth()->user()->current_profile);
-        return view('following', compact('profile'));
+        $profile = Profile::where('handle', $user)->first();
+        // follows
+        $follows = $profile->followings()->get();
+        $followings = [];
+        foreach($follows as $follow){
+            array_push($followings, Profile::find($follow->following_id));
+        }
+
+        // followers
+        $follows = $profile->followers()->get();
+        $followers = [];
+        foreach($follows as $follow){
+            array_push($followers, Profile::find($follow->following_id));
+        }
+        return view('following', compact('profile', 'followings', 'followers'));
     }
 }

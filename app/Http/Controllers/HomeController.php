@@ -50,6 +50,7 @@ class HomeController extends Controller
             $user->save();
         }
         else{
+            // old signed in user
             $profile = Profile::find(auth()->user()->current_profile);
             $follows = $profile->followings()->select('following_id')->get();
             $tweets = DB::table('tweets')->where('profile_id', auth()->user()->current_profile)->leftJoin('profiles', 'tweets.profile_id', '=', 'profiles.id')->select('tweets.*', 'profiles.name', 'profiles.handle', 'profiles.profile_pic')->get();
@@ -86,12 +87,10 @@ class HomeController extends Controller
             $tweets = $tweets->sortByDesc('created_at');
 
             // $tweets = DB::table('tweets')->leftJoin('profiles', 'tweets.profile_id', '=', 'profiles.id')->select('tweets.*', 'profiles.name', 'profiles.handle', 'profiles.profile_pic')->orderBy('created_at', 'desc')->get();
-            // if($tweets->isEmpty()){
-            //     $tweets = [];
-            // }
+
         }
         // dd($tweets);
-        return view('home', compact('tweets', 'profile'));
+        return view('home', compact('tweets'));
     }
 
     // public function follow()
