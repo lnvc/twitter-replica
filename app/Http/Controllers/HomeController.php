@@ -39,15 +39,20 @@ class HomeController extends Controller
         }
         else if(User::find(auth()->user()->id)->profiles()->get()->isEmpty()){
             // first sign up
-            $profile = new Profile;
-            $profile->name = auth()->user()->name;
-            $profile->handle = auth()->user()->handle;
-            $profile->profile_pic = 'default.jpeg';
-            $profile->cover = 'gray.jpeg';
-            $user->profiles()->save($profile);
+            $profile_first = new Profile;
+            $profile_first->name = auth()->user()->name;
+            $profile_first->handle = auth()->user()->handle;
+            $profile_first->profile_pic = 'default.jpeg';
+            $profile_first->cover = 'gray.jpeg';
+            $user->profiles()->save($profile_first);
+            $user->refresh();
 
-            $user->current_profile = $profile->id;
+            $user->current_profile = $profile_first->id;
             $user->save();
+            $user->refresh();
+            
+            // appserviceprovider loads first before controllers, so manually assign profile upon user sign up
+            return view('home', compact('profile_first', 'tweets'));
         }
         else{
             // old signed in user

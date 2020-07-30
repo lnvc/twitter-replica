@@ -29,13 +29,15 @@ Route::put('/updateprofile', 'ProfileController@update');
 Route::get('/{user}/status/{tweet_id}', 'TweetController@show');
 
 // spa
-Route::get('/{user}/following', function() {
-    $f = 'Following';
-    return view('follow_page', compact('f'));
-});
-Route::get('/{user}/followers', function() {
-    $f = 'Followers';
-    return view('follow_page', compact('f'));
-});
+Route::get('/{user}/following', 'ProfileController@displayfollow');
+//  function() {
+//     $f = 'Following';
+//     return view('follow_page', compact('f'));
+// });
+Route::get('/{user}/followers', 'ProfileController@displayfollow');
+//  function() {
+//     $f = 'Followers';
+//     return view('follow_page', compact('f'));
+// });
 
 Route::get('/{user}', 'ProfileController@index')->name('profile');

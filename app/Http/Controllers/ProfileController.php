@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use stdClass;
 
 class ProfileController extends Controller
@@ -106,20 +107,26 @@ class ProfileController extends Controller
 
     public function displayfollow($user)
     {
-        $profile = Profile::where('handle', $user)->first();
-        // follows
-        $follows = $profile->followings()->get();
-        $followings = [];
-        foreach($follows as $follow){
-            array_push($followings, Profile::find($follow->following_id));
+        $url = url()->current();
+        $f = '';
+        $i = 0; 
+        $j = Str::of($url)->length() - 9;
+        while ($i < 9) {
+            $f = Str::of($f)->append($url[$j + $i]);
+            $i++;
         }
 
-        // followers
-        $follows = $profile->followers()->get();
-        $followers = [];
-        foreach($follows as $follow){
-            array_push($followers, Profile::find($follow->following_id));
-        }
-        return view('following', compact('profile', 'followings', 'followers'));
+        $profile = Profile::where('handle', $user)->first();
+        $followings = $profile->followings()->get()
+            ->map(function($id) {
+                return Profile::find($id->following_id);
+            });
+
+        $followers = $profile->followers()->get()
+            ->map(function($id) {
+                return Profile::find($id->follower_id);
+            });
+
+        return view('follow_page', compact('followings', 'followers', 'f'));
     }
 }

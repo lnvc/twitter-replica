@@ -73,7 +73,11 @@
                                 <b-button v-b-modal.modal-1 variant="primary">Tweet</b-button>
 
                                 <b-modal id="modal-1">
-                                    <Tweet :profile={{$profile}}></Tweet>
+                                    @if ($profile)
+                                        <Tweet :profile={{$profile}}></Tweet>
+                                    @else
+                                        <Tweet :profile={{$profile_first}}></Tweet>
+                                    @endif
                                 </b-modal>
                                 {{-- <TweetButton :profile="{{$profile}}"/> --}}
                                 {{-- <button @click="isOpen = 1" class="btn btn-primary">Tweet</button>

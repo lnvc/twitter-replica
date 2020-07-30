@@ -37,6 +37,7 @@ Vue.component('editprofile', require('./components/EditProfile.vue').default);
 Vue.component('follow', require('./components/Follow.vue').default);
 Vue.component('tab-following', require('./components/Followings.vue').default);
 Vue.component('tab-followers', require('./components/Followers.vue').default);
+Vue.component('profile-partial', require('./components/ProfilePartial.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
