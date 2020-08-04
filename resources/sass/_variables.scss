@@ -29,6 +29,44 @@ text-align: left;
 background-color: #f8fafc;
 }
 
+.dark-gray {
+    color: #657786;
+}
+
+.light-gray {
+    color: #AAB8C2;
+}
+
+.extra-light-gray {
+    color: #E1E8ED;
+}
+
+.row-tabs {
+    height: 50px;
+}
+
+.tabs {
+    color: #657786;
+    border-bottom: 1px solid #E1E8ED;
+}
+
+.tabs:hover{
+    background-color: #eaf5ff;
+    color: #1DA1F2;
+    cursor: pointer;
+}
+
+.active {
+    color: #1DA1F2;
+    border-bottom: 2px solid #1DA1F2;
+}
+
+.icons {
+    max-width: 30px;
+    width: 30px;
+    height: 30px;
+}
+
 img {
     object-fit: cover;
 }

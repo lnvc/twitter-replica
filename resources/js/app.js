@@ -48,18 +48,20 @@ Vue.component('profile-partial', require('./components/ProfilePartial.vue').defa
     
 // });
 
-// import Follow from './components/Follow.vue'
+import follow from './components/Follow.vue'
+// import './components/Followings.vue'
 
-// const router = new Router({
-//     routes: [
-//         {
-//             path: '/:user/followers',
-//             name: 'follow',
-//             component: Follow
-//         },
-//     ]
-// });
+const router = new Router({
+    routes: [
+        {
+            path: '/home',
+            name: 'home', 
+            component: follow
+        },
+    ]
+});
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    // router,
 });

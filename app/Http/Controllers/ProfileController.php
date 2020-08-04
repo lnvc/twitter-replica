@@ -127,6 +127,6 @@ class ProfileController extends Controller
                 return Profile::find($id->follower_id);
             });
 
-        return view('follow_page', compact('followings', 'followers', 'f'));
+        return view('follow_page', compact('user','followings', 'followers', 'f'));
     }
 }

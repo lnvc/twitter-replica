@@ -110,6 +110,8 @@
             </main>
             <div class="col col-md-2">
                 Search Twitter
+                <router-link to="{ name: 'user' }">adsf</router-link>
+                {{-- <router-view></router-view> --}}
             </div>
         </div>
     </div>

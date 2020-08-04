@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'welcome');
 Auth::routes();
 
+// Route::get('{any}', 'HomeController@index');
+
 Route::redirect('/', 'home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/tweet', 'TweetController@store');

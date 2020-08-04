@@ -3,6 +3,6 @@
 @section('content')
 {{-- insert vue component 'Follow' --}}
     <div>
-        <Follow f="{{ $f }}" :following="{{$followings}}" :followers="{{$followers}}" ></Follow>
+        <Follow user="{{ $user }}" f="{{ $f }}" :following="{{$followings}}" :followers="{{$followers}}" ></Follow>
     </div>
 @endsection
