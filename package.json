@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bootstrap-vue": "^2.15.0",
+        "v-tooltip": "^2.0.3",
         "vue-router": "^3.3.4"
     }
 }

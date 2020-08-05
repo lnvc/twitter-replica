@@ -12,6 +12,8 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Router from 'vue-router'
+import VTooltip from 'v-tooltip'
+
 
 
 // Install BootstrapVue
@@ -19,7 +21,10 @@ Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
-Vue.use(Router)
+// Vue.use(Router)
+
+Vue.use(VTooltip)
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -38,6 +43,7 @@ Vue.component('follow', require('./components/Follow.vue').default);
 Vue.component('tab-following', require('./components/Followings.vue').default);
 Vue.component('tab-followers', require('./components/Followers.vue').default);
 Vue.component('profile-partial', require('./components/ProfilePartial.vue').default);
+Vue.component('box-hover', require('./components/BoxHover.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -48,18 +54,19 @@ Vue.component('profile-partial', require('./components/ProfilePartial.vue').defa
     
 // });
 
-import follow from './components/Follow.vue'
+// import follow from './components/Follow.vue'
 // import './components/Followings.vue'
+import './components/ProfilePartial.vue'
 
-const router = new Router({
-    routes: [
-        {
-            path: '/home',
-            name: 'home', 
-            component: follow
-        },
-    ]
-});
+// const router = new Router({
+//     routes: [
+//         {
+//             path: '/home',
+//             name: 'home', 
+//             component: follow
+//         },
+//     ]
+// });
 
 const app = new Vue({
     el: '#app',

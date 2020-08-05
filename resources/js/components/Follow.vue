@@ -1,8 +1,8 @@
 <template>
     <div class="container-fluid">
         <div class="row">
-            <div class="col col-md-auto">
-                <span><a href="#"><img :src="'../../../storage/images/back.png'" class="icons" alt=""></a></span>
+            <div class="col col-md-auto" @click="laravelRoute" style="cursor: pointer">
+                <span><img :src="'../../../storage/images/back.png'" class="icons" alt=""></span>
             </div>
             <div class="col" style="color: gray;">@{{ this.user }}</div>
         </div>
@@ -46,6 +46,9 @@ export default {
             else {
                 return false;
             }
+        },
+        laravelRoute: function() {
+            window.location.href = '/' + this.user;
         }
     }
 }
