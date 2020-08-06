@@ -253,6 +253,20 @@ img {
   border-color: #f9f9f9;
 }
 
+.navbar-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.twitter-link {
+  color: black;
+}
+
+.twitter-link:hover {
+  color: #1DA1F2;
+  background-color: #eaf5ff;
+}
+
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors

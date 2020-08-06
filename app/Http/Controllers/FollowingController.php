@@ -6,7 +6,6 @@ use App\Follower;
 use App\Following;
 use App\Profile;
 use App\User;
-use Illuminate\Http\Request;
 
 class FollowingController extends Controller
 {
@@ -29,8 +28,10 @@ class FollowingController extends Controller
         $follower->follower_id = $profile->id;
         $follower->save();
 
-        return redirect()->route('home');
-        // return redirect()
+        // return redirect()->route('home');
+        $following->refresh();
+        $follower->refresh();
+        return redirect('/' .$user->handle . '/followers');
     }
 
     public function unfollow($id) 
@@ -44,6 +45,9 @@ class FollowingController extends Controller
         $follower->followers()->where('profile_id', $id)->where('follower_id', $profile->id)->delete();
         $follower->save();
 
-        return redirect()->route('home');
+        // return redirect()->route('home');
+        $follower->refresh();
+        return redirect('/' .$user->handle . '/following');
+
     }
 }

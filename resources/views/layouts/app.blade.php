@@ -36,32 +36,58 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item"><a class="navbar-brand" href="{{ url('/home') }}">
+                            <li class="nav-item"><a class="navbar-brand rounded twitter-link" href="{{ url('/home') }}">
                                 <img src="{{ asset('images/twitter.png') }}" id="thumbnail" alt="">
                             </a></li>
-                            <li class="nav-item">
-                                <a href="/" class="nav-link">Home</a>
+                            <li class="nav-item py-2">
+                                <a href="/" class="nav-link twitter-link rounded">
+                                    <img src="{{ asset('images/home.jpg') }}" class="navbar-icon" alt=""> 
+                                    <span class="font-weight-bold">Home</span>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Explore</a>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link twitter-link rounded">
+                                    <img src="{{ asset('images/hashtag.png') }}" class="navbar-icon" alt="">
+                                    <span class="font-weight-bold">Explore</span>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Notifications</a>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link twitter-link rounded">
+                                    <img src="{{ asset('images/notif.png') }}" class="navbar-icon" alt="">
+                                    <span class="font-weight-bold">Notifications</span> 
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Messages</a>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link twitter-link rounded">
+                                    <img src="{{ asset('images/dm.png') }}" class="navbar-icon" alt="">
+                                    <span class="font-weight-bold">Messages</span>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Bookmarks</a>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link twitter-link rounded">
+                                    <img src="{{ asset('images/bookmark.png') }}" class="navbar-icon" alt="">
+                                    <span class="font-weight-bold">Bookmarks</span>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">Lists</a>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link twitter-link rounded">
+                                    <img src="{{ asset('images/list.png') }}" class="navbar-icon" alt="">
+                                    <span class="font-weight-bold">Lists</span>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a href={{ url(Auth::user()->handle) }} class="nav-link">Profile</a>
+                            <li class="nav-item py-2">
+                                <a href={{ url(Auth::user()->handle) }} class="nav-link twitter-link rounded">
+                                    <img src="{{ asset('images/profile-icon.png') }}" class="navbar-icon" alt="">
+                                    <span class="font-weight-bold">Profile</span>
+                                    
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">More</a>
+                            <li class="nav-item py-2">
+                                <a href="#" class="nav-link twitter-link rounded">
+                                    <img src="{{ asset('images/more.png') }}" class="navbar-icon" alt="">
+                                    <span class="font-weight-bold">More</span>
+                                    
+                                </a>
                             </li>
                             {{-- <li class="nav-item">
                                 <b-button v-b-modal.modal class="btn btn-primary">Tweet</b-button>
@@ -74,9 +100,9 @@
 
                                 <b-modal id="modal-1">
                                     @if ($profile)
-                                        <Tweet :profile={{$profile}}></Tweet>
+                                        <make-tweet :profile={{$profile}}></make-tweet>
                                     @else
-                                        <Tweet :profile={{$profile_first}}></Tweet>
+                                        <make-tweet :profile={{$profile_first}}></make-tweet>
                                     @endif
                                 </b-modal>
                                 {{-- <TweetButton :profile="{{$profile}}"/> --}}
@@ -85,8 +111,8 @@
                             </li>
 
                             <li class="nav-item dropdown position-absolute fixed-bottom text-right">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="{{ route('profile', ['user' => Auth::user()->name]) }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->handle }} <span class="caret"></span>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: gray" href="{{ route('profile', ['user' => Auth::user()->name]) }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ '@' . Auth::user()->handle }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

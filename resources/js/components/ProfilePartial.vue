@@ -8,7 +8,7 @@
                 </template>
             </v-popover>
         </div>
-        <div class="col">
+        <div class="col col-sm-8">
             <div class="row">
                 <b>{{ profile.name }}</b>
             </div>
@@ -19,6 +19,9 @@
                 <span>{{ profile.bio }}</span>
             </div>
         </div>
+        <div class="col col-sm-auto">
+            <follow-button :f="f" :profile="profile" :not_following="not_following"></follow-button>
+        </div>
     </div>
 </template>
 
@@ -27,7 +30,7 @@ import './BoxHover.vue'
 
 export default {
     name: 'profile-partial',
-    props: ["profile"],
+    props: ["f", "profile", "not_following"],
     data() {
         return {
             hover: false,

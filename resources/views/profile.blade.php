@@ -11,10 +11,12 @@
             <img src="{{ asset('storage/pfp/'.$is_user->profile_pic) }}" id="profile_pic" class="rounded-circle" alt="">
         </a>
         <div class="position-absolute px-3" style="right: 0; bottom: 40px;">
-            @if(!$is_own_profile && $can_follow)
+            {{-- @if(!$is_own_profile && $can_follow)
                 <a href="{{ url('follow/' . $is_user->id) }}" class="btn btn-primary">Follow</a>
             @elseif(!$is_own_profile && !$can_follow)
-                <a href="{{ url('unfollow/' . $is_user->id) }}" class="btn btn-danger">Unfollow</a>
+                <a href="{{ url('unfollow/' . $is_user->id) }}" class="btn btn-danger">Unfollow</a> --}}
+            @if(!$is_own_profile)
+                <follow-button can_follow="{{ $can_follow }}" profile="{{ $is_user }}"></follow-button>
             @else
                 <b-button v-b-modal.modal-2 variant="primary">Edit profile</b-button>
                 <b-modal id="modal-2" title="Edit profile">

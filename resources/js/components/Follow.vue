@@ -16,7 +16,7 @@
                 <b>{{ tab }}</b>
             </div>
         </div>
-        <component :is="computeCurrentTab" :f="this.f" :following="this.following" :followers="this.followers"></component>
+        <component :is="computeCurrentTab" :f="this.f" :following="this.following" :followers="this.followers" :not_following="this.not_following" ></component>
     </div>
 </template>
 
@@ -26,7 +26,7 @@ import './Followers.vue';
 
 export default {
     name: 'Follow',
-    props: ["user", "f", "following", "followers"],
+    props: ["user", "f", "following", "followers", "not_following"],
     data() {
         return {
             currentTab: this.f,

@@ -1,4 +1,5 @@
 <div onclick="location.href='{{ '/' . $tweet->handle . '/status' .'/' . $tweet->id }}';" id="{{ $tweet->id . $tweet->profile_id }}" class="container-fluid border-bottom py-2 tweet-container" style="min-width: 100%; cursor: pointer;">
+{{-- <div> --}}
     @if (isset($tweet->retweeted_tweet))
         <div class="row">
             <div class="col col-sm-1 text-right pr-0">
@@ -33,9 +34,10 @@
                     </a>
                     <span class="text-secondary">{{' · ' . $tweet->created_at}}</span>
                 </div>
-                <div class="col text-right">
+                <div class="col text-right" onclick="">
                     <input type="image" src="{{ asset('images/dropdown.png') }}" alt="" style="height: 15px; width: 15px;">
                 </div>
+                {{-- <Tweet></Tweet> --}}
             </span>
             <div class="row pl-2" style="width: 100%">
                 <span>{{ $tweet->tweet }}</span> 

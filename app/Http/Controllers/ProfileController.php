@@ -122,13 +122,22 @@ class ProfileController extends Controller
                 return Profile::find($id->following_id);
             });
 
+        // dd($followings);
+        
         $followers = $profile->followers()->get()
+        ->map(function($id) {
+            return Profile::find($id->follower_id);
+        });
+        
+        // dd($followers);
+
+        $not_following = $followers->diff($followings)
             ->map(function($id) {
-                return Profile::find($id->follower_id);
+                return $id->id;
             });
 
-        $check = route('home');
+        // dd($not_following);
 
-        return view('follow_page', compact('check', 'user','followings', 'followers', 'f'));
+        return view('follow_page', compact('user','followings', 'followers', 'not_following', 'f'));
     }
 }
