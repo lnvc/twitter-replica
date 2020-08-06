@@ -130,11 +130,26 @@ class ProfileController extends Controller
         });
         
         // dd($followers);
+        $visitor_following = Profile::where('id', auth()->user()->id)->first()->followings()->get()
+            ->map(function($id) {
+                return Profile::find($id->following_id);
+            });
 
-        $not_following = $followers->diff($followings)
+        $not_following = $followers->diff($visitor_following)
             ->map(function($id) {
                 return $id->id;
-            });
+            })->toArray();
+
+        // dd($not_following);
+        
+        $temp = $followings->diff($visitor_following)
+            ->map(function($id) {
+                return $id->id;
+            })->toArray();
+
+
+        $not_following = collect(array_merge($not_following, $temp));
+        
 
         // dd($not_following);
 
