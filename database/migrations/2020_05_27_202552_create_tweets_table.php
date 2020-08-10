@@ -16,8 +16,8 @@ class CreateTweetsTable extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->id();
             $table->longText('tweet');
-            $table->integer('favorite_count')->nullable();
-            $table->integer('retweet_count')->nullable();
+            $table->integer('favorite_count')->default(0);
+            $table->integer('retweet_count')->default(0);
             $table->integer('reply_count')->nullable();
             $table->boolean('is_reply')->nullable();
             $table->unsignedBigInteger('reply_to')->nullable();

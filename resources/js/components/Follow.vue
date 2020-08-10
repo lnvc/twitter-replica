@@ -16,7 +16,7 @@
                 <b>{{ tab }}</b>
             </div>
         </div>
-        <component :is="computeCurrentTab" :f="this.f" :following="this.following" :followers="this.followers" :not_following="this.not_following" ></component>
+        <component :is="computeCurrentTab" :user="user" :f="this.f" :following="this.following" :followers="this.followers" :not_following="this.not_following" ></component>
     </div>
 </template>
 

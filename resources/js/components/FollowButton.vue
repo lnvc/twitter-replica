@@ -25,7 +25,7 @@
 <script>
 export default {
     name: 'follow-button',
-    props: ["f", "profile", "can_follow", "not_following"],
+    props: ["profile", "can_follow", "not_following"],
     data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),

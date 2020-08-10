@@ -16,17 +16,23 @@ class FollowingController extends Controller
 
     public function follow($id)
     {
+        // dd($id);
         $user = User::find(auth()->user()->id);
         $profile = Profile::find($user->current_profile);
         $following = new Following;
         $following->profile_id = $profile->id;
         $following->following_id = $id;
         $following->save();
-
+        $following->refresh();
+        // $profile->followings()->save($following);
+        
+        // $followed = Profile::find($id);
         $follower = new Follower;
         $follower->profile_id = $id;
         $follower->follower_id = $profile->id;
         $follower->save();
+        $follower->refresh();
+        // $followed->followers()->save($follower);
 
         // return redirect()->route('home');
         $following->refresh();

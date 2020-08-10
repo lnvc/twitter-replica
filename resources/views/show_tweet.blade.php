@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    {{ $tweet_id }}
+    <show-tweet :tweet_owner="{{ $tweet_owner }}" :user="{{ $user }}" :tweet="{{ $tweet }}" :follows="{{ $follows }}" :profile="{{ $profile }}"></show-tweet>
 @endsection

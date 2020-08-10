@@ -26,6 +26,7 @@ Route::get('/follow/{id}', 'FollowingController@follow');
 Route::get('/unfollow/{id}', 'FollowingController@unfollow');
 Route::post('/like', 'TweetController@like');
 Route::post('/retweet', 'TweetController@retweet');
+Route::delete('/delete/{id}', 'TweetController@destroy');
 Route::get('/settings/profile', 'ProfileController@edit')->middleware('auth');
 Route::put('/updateprofile', 'ProfileController@update');
 Route::get('/{user}/status/{tweet_id}', 'TweetController@show');

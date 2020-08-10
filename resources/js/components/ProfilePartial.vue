@@ -20,17 +20,18 @@
             </div>
         </div>
         <div class="col col-sm-auto">
-            <follow-button :f="f" :profile="profile" :not_following="not_following"></follow-button>
+            <follow-button :profile="profile" :not_following="not_following"></follow-button>
         </div>
     </div>
 </template>
 
 <script>
 import './BoxHover.vue'
+import './FollowButton.vue'
 
 export default {
     name: 'profile-partial',
-    props: ["f", "profile", "not_following"],
+    props: ["user", "f", "profile", "not_following"],
     data() {
         return {
             hover: false,

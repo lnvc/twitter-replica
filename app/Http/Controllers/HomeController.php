@@ -58,12 +58,12 @@ class HomeController extends Controller
             // old signed in user
             $profile = Profile::find(auth()->user()->current_profile);
             $follows = $profile->followings()->select('following_id')->get();
-            $tweets = DB::table('tweets')->where('profile_id', auth()->user()->current_profile)->leftJoin('profiles', 'tweets.profile_id', '=', 'profiles.id')->select('tweets.*', 'profiles.name', 'profiles.handle', 'profiles.profile_pic')->get();
+            $tweets = DB::table('tweets')->where('profile_id', auth()->user()->current_profile)->leftJoin('profiles', 'tweets.profile_id', '=', 'profiles.id')->select('profiles.name', 'profiles.handle', 'profiles.profile_pic', 'tweets.*')->get();
             $retweets = $profile->retweets()
                 ->leftJoin('tweets', 'retweets.retweeted_tweet', 'tweets.id')
                 ->leftJoin('profiles as RTER', 'retweets.profile_id', 'RTER.id')
                 ->leftJoin('profiles', 'tweets.profile_id', 'profiles.id')
-                ->select('*', 'RTER.handle as rter_handle', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id')->get();
+                ->select('*', 'RTER.handle as rter_handle', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id', 'tweets.id')->get();
             // dd($tweets);
             if(!$retweets->isEmpty()){
                 // dd($tweets->merge($retweets));
@@ -73,7 +73,7 @@ class HomeController extends Controller
             foreach($follows as $follow) {
                 $follow_profile = Profile::find($follow->following_id);
                 if(!$follow_profile->tweets()->get()->isEmpty()){
-                    $add_tweet = DB::table('tweets')->where('profile_id', $follow->following_id)->leftJoin('profiles', 'tweets.profile_id', '=', 'profiles.id')->select('tweets.*', 'profiles.*')->get();
+                    $add_tweet = DB::table('tweets')->where('profile_id', $follow->following_id)->leftJoin('profiles', 'tweets.profile_id', '=', 'profiles.id')->select('profiles.*', 'tweets.*')->get();
                     $tweets = $tweets->merge($add_tweet);
                     // dd($add_tweet);
                     // dd($tweets);
@@ -82,7 +82,7 @@ class HomeController extends Controller
                     ->leftJoin('tweets', 'retweets.retweeted_tweet', 'tweets.id')
                     ->leftJoin('profiles as RTER', 'retweets.profile_id', 'RTER.id')
                     ->leftJoin('profiles', 'tweets.profile_id', 'profiles.id')
-                    ->select('*', 'RTER.handle as rter_handle', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id')->get();
+                    ->select('*', 'RTER.handle as rter_handle', 'retweets.created_at', 'retweets.updated_at', 'retweets.profile_id', 'tweets.id')->get();
                 if(!$retweets->isEmpty()){
                     $tweets = $tweets->merge($retweets);
                     // dd($tweets);

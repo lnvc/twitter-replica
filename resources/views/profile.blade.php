@@ -16,10 +16,10 @@
             @elseif(!$is_own_profile && !$can_follow)
                 <a href="{{ url('unfollow/' . $is_user->id) }}" class="btn btn-danger">Unfollow</a> --}}
             @if(!$is_own_profile)
-                <follow-button can_follow="{{ $can_follow }}" profile="{{ $is_user }}"></follow-button>
+                <follow-button can_follow="{{ $can_follow }}" :profile="{{ $is_user }}"></follow-button>
             @else
                 <b-button v-b-modal.modal-2 variant="primary">Edit profile</b-button>
-                <b-modal id="modal-2" title="Edit profile">
+                <b-modal id="modal-2" title="Edit profile" hide-footer>
                     <EditProfile :profile="{{ $profile }}"></EditProfile>
                 </b-modal>
                 {{-- <a href="/settings/profile" class="btn btn-primary" >Edit profile</a> --}}

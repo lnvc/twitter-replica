@@ -46,6 +46,8 @@ Vue.component('profile-partial', require('./components/ProfilePartial.vue').defa
 Vue.component('box-hover', require('./components/BoxHover.vue').default);
 Vue.component('tweet', require('./components/Tweet.vue').default);
 Vue.component('follow-button', require('./components/FollowButton.vue').default);
+Vue.component('show-tweet', require('./components/ShowTweet.vue').default);
+Vue.component('dropdown-hover', require('./components/DropdownHover.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

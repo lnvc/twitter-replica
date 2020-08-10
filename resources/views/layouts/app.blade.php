@@ -98,11 +98,11 @@
                             <li class="make-tweet">
                                 <b-button v-b-modal.modal-1 variant="primary">Tweet</b-button>
 
-                                <b-modal id="modal-1">
+                                <b-modal id="modal-1" hide-footer>
                                     @if ($profile)
-                                        <make-tweet :profile={{$profile}}></make-tweet>
+                                        <make-tweet :is_reply='false' :profile={{$profile}}></make-tweet>
                                     @else
-                                        <make-tweet :profile={{$profile_first}}></make-tweet>
+                                        <make-tweet :is_reply='false' :profile={{$profile_first}}></make-tweet>
                                     @endif
                                 </b-modal>
                                 {{-- <TweetButton :profile="{{$profile}}"/> --}}
@@ -134,9 +134,8 @@
             <main class="pt-4 px-0 col col-md-4 border-left border-right">
                 @yield('content')
             </main>
-            <div class="col col-md-2">
-                Search Twitter
-                {{-- <router-view></router-view> --}}
+            <div class="col col-md-2 pt-2">
+                <input type="text" name="" id="" placeholder="Search Twitter" class="rounded border-0" style="background-color: #E1E8ED; width: 100%;">
             </div>
         </div>
     </div>

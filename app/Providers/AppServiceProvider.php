@@ -43,13 +43,18 @@ class AppServiceProvider extends ServiceProvider
             //     $user->refresh();
             //     // dd($profile);
             // }
-             if(auth()->check()){
+            $follows = null;
+            if(auth()->check()){
                 // old user
                 $profile = Profile::find(auth()->user()->current_profile);
+                if($profile){
+                    $follows = $profile->followings()->get();
+                }
             }
 
             // all views get 'profile' = $profile
             $view->with('profile', $profile);
+            $view->with('follows', $follows);
         });
     }
 }
